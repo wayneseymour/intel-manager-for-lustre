@@ -20,6 +20,14 @@ check_for_autopass() {
                test-services
                unit-tests
                upgrade-tests"
+    # integration-tests-shared-storage-configuration-with-simulator doesn't
+    # work without the agent module co-located
+    t="integration-tests-shared-storage-configuration-with-simulator"
+    if [[ $JOB_NAME == $t || $JOB_NAME == $t/* ]]; then
+        fake_test_pass "tests_skipped_because_agent_removed" "$WORKSPACE/test_reports/" ${BUILD_NUMBER}
+        exit 0
+    fi
+
     commit_message=$(git log -n 1)
     TESTS_TO_RUN=$(echo "$commit_message" | sed -ne '/^ *Run-tests:/s/^ *Run-tests: *//p')
     if [ -n "$TESTS_TO_RUN" ]; then
