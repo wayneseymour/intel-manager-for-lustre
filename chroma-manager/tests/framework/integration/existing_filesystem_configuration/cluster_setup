@@ -141,6 +141,7 @@ if [ -f /etc/profile.d/intel_proxy.sh ]; then
     echo \". /etc/profile.d/intel_proxy.sh\" > /etc/sysconfig/chroma-agent
 fi
 
+yum-config-manager --add-repo http://jenkins.lotus.hpdd.lab.intel.com/job/iml-agent/76/arch=x86_64,distro=el7/artifact/artifacts/iml-agent-test.repo
 if [ -f /etc/yum.repos.d/autotest.repo ]; then
     cat << \"EOF\" >> /etc/yum.repos.d/autotest.repo
 retries=50

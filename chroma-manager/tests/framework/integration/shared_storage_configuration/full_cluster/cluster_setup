@@ -110,6 +110,7 @@ if [ -n \"$STORAGE_SERVER_REPOS\" ]; then
         yum-config-manager --add-repo \$repo
     done
 fi
+yum-config-manager --add-repo http://jenkins.lotus.hpdd.lab.intel.com/job/iml-agent/76/arch=x86_64,distro=el7/artifact/artifacts/iml-agent-test.repo
 # https://github.com/pypa/virtualenv/issues/355
 python_version=\$(python -c 'import platform; print \".\".join(platform.python_version_tuple()[0:2])')
 if $MEASURE_COVERAGE; then

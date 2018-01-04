@@ -298,6 +298,7 @@ yum -y install pdsh
 pdcp -l root -R ssh -w $(spacelist_to_commalist "${STORAGE_APPLIANCES[@]}") /usr/share/chroma-manager/storage_server.repo /etc/yum.repos.d/Intel-Lustre-Agent.repo"
 
 pdsh -l root -R ssh -S -w "$(spacelist_to_commalist "${STORAGE_APPLIANCES[@]}")" "exec 2>&1; set -xe
+yum-config-manager --add-repo http://jenkins.lotus.hpdd.lab.intel.com/job/iml-agent/76/arch=x86_64,distro=el7/artifact/artifacts/iml-agent-test.repo
 # TODO: we really just need to adjust cache timeouts here to account for
 #       our compressed timelines
 yum clean all
